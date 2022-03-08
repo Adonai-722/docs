@@ -1,7 +1,7 @@
 ---
 title: GitHub Community Guidelines
 redirect_from:
-  - /community-guidelines/
+  - /community-guidelines
   - /articles/github-community-guidelines
 versions:
   fpt: '*'
@@ -23,7 +23,7 @@ We want people to work better together. Although we maintain the site, this is a
 
 * **Be welcoming and open-minded** - Other collaborators may not have the same experience level or background as you, but that doesn't mean they don't have good ideas to contribute. We encourage you to be welcoming to new collaborators and those just getting started.
 
-* **Respect each other.**  Nothing sabotages healthy conversation like rudeness. Be civil and professional, and don’t post anything that a reasonable person would consider offensive, abusive, or hate speech. Don’t harass or grief anyone. Treat each other with dignity and consideration in all interactions.
+* **Respect each other** - Nothing sabotages healthy conversation like rudeness. Be civil and professional, and don’t post anything that a reasonable person would consider offensive, abusive, or hate speech. Don’t harass or grief anyone. Treat each other with dignity and consideration in all interactions.
 
   You may wish to respond to something by disagreeing with it. That’s fine. But remember to criticize ideas, not people. Avoid name-calling, ad hominem attacks, responding to a post’s tone instead of its actual content, and knee-jerk contradiction. Instead, provide reasoned counter-arguments that improve the conversation.
 
@@ -110,7 +110,7 @@ Actions we may take in response to an abuse report include but are not limited t
 
 ## Appeal and Reinstatement
 
-In some cases there may be a basis to reverse an action, for example, based on additional information a user provided, or where a user has addressed the violation and agreed to abide by our Acceptable Use Policies moving forward. If you wish to appeal an enforcement action, please contact [support](https://support.github.com/contact).
+In some cases there may be a basis to reverse an action, for example, based on additional information a user provided, or where a user has addressed the violation and agreed to abide by our Acceptable Use Policies moving forward. If you wish to appeal an enforcement action, please contact [support](https://support.github.com/contact?tags=docs-policy).
 
 ## Legal Notices
 

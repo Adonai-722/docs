@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import App from 'next/app'
 import type { AppProps, AppContext } from 'next/app'
 import Head from 'next/head'
-import { useTheme, ThemeProvider } from '@primer/components'
-import { defaultThemeProps, getThemeProps } from 'components/lib/getThemeProps'
+import { useTheme, ThemeProvider } from '@primer/react'
+import { SSRProvider } from '@react-aria/ssr'
+import { defaultComponentThemeProps, getThemeProps } from 'components/lib/getThemeProps'
 
 import '../stylesheets/index.scss'
 
@@ -13,7 +14,7 @@ import { LanguagesContext, LanguagesContextT } from 'components/context/Language
 
 type MyAppProps = AppProps & {
   csrfToken: string
-  themeProps: typeof defaultThemeProps
+  themeProps: typeof defaultComponentThemeProps
   languagesContext: LanguagesContextT
 }
 const MyApp = ({ Component, pageProps, csrfToken, themeProps, languagesContext }: MyAppProps) => {
@@ -29,8 +30,14 @@ const MyApp = ({ Component, pageProps, csrfToken, themeProps, languagesContext }
         <title>GitHub Documentation</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="alternate icon" type="image/png" href="/assets/images/site/favicon.png" />
-        <link rel="icon" type="image/svg+xml" href="/assets/images/site/favicon.svg" />
+        {/* The value in these "/cb-xxxxx" prefixes aren't important. They
+            just need to be present. They help the CDN cache the asset
+            for infinity.
+            Just remember, if you edit these images on disk, remember to
+            change these numbers
+         */}
+        <link rel="alternate icon" type="image/png" href="/assets/cb-600/images/site/favicon.png" />
+        <link rel="icon" type="image/svg+xml" href="/assets/cb-803/images/site/favicon.svg" />
 
         <meta
           name="google-site-verification"
@@ -43,12 +50,14 @@ const MyApp = ({ Component, pageProps, csrfToken, themeProps, languagesContext }
 
         <meta name="csrf-token" content={csrfToken} />
       </Head>
-      <ThemeProvider>
-        <LanguagesContext.Provider value={languagesContext}>
-          <SetTheme themeProps={themeProps} />
-          <Component {...pageProps} />
-        </LanguagesContext.Provider>
-      </ThemeProvider>
+      <SSRProvider>
+        <ThemeProvider dayScheme={themeProps.dayTheme} nightScheme={themeProps.nightTheme}>
+          <LanguagesContext.Provider value={languagesContext}>
+            <SetTheme themeProps={themeProps} />
+            <Component {...pageProps} />
+          </LanguagesContext.Provider>
+        </ThemeProvider>
+      </SSRProvider>
     </>
   )
 }
@@ -67,7 +76,7 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   }
 }
 
-const SetTheme = ({ themeProps }: { themeProps: typeof defaultThemeProps }) => {
+const SetTheme = ({ themeProps }: { themeProps: typeof defaultComponentThemeProps }) => {
   // Cause primer/components to re-evaluate the 'auto' color mode on client side render
   const { setColorMode } = useTheme()
   useEffect(() => {
